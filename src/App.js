@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import FeedbackOptions from './components/FeedbackOptions/feedback';
+import './components/FeedbackOptions/feedback.css';
+import Statistics from './components/Statistics/statistics';
+import './components/Statistics/statistics.css';
+import Section from './components/Section/section';
+import './components/Section/section.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  handleIncrementNeutral = () => {
+    this.setState(prevState => ({
+      neutral: prevState.neutral + 1,
+    }));
+  };
+
+  handleIncrementGood = () => {
+    this.setState(prevState => ({
+      good: prevState.good + 1,
+    }));
+  };
+
+  handleIncrementBad = () => {
+    this.setState(prevState => ({
+      bad: prevState.bad + 1,
+    }));
+  };
+
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
+    return total;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
+    const total = this.countTotalFeedback();
+
+    var percentage = 100;
+    return `${percentage * (good / total)}`;
+  };
+
+  render() {
+    return (
+      <div>
+        {/* <Section title="Please leave feedback"> */}
+        <FeedbackOptions />
+        {/* </Section> */}
+        {/* <Section title="Statistics"> */}
+        <Statistics />
+        {/* </Section> */}
+      </div>
+    );
+  }
 }
 
 export default App;
