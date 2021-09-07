@@ -1,9 +1,6 @@
 import FeedbackOptions from './components/FeedbackOptions/feedback';
-import './components/FeedbackOptions/feedback.css';
 import Statistics from './components/Statistics/statistics';
-import './components/Statistics/statistics.css';
 import Section from './components/Section/section';
-import './components/Section/section.css';
 import React, { Component } from 'react';
 
 class App extends Component {
