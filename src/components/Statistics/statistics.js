@@ -1,15 +1,20 @@
-export default function Statistics() {
-  const { good, neutral, bad } = this.state;
-  const total = this.countTotalFeedback();
-  const Percentage = this.countPositiveFeedbackPercentage();
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Block, Item } from './statistics.styled';
 
-  return (
-    <div>
-      <span className="Counter__value">Good: {good}</span>;
-      <span className="Counter__value">Neutral: {neutral}</span>;
-      <span className="Counter__value">Bad: {bad}</span>;
-      <span className="Counter__value">Total: {total}</span>;
-      <span className="Counter__value">Positive feedback: {Percentage}%</span>;
-    </div>
-  );
-}
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => (
+  <Block>
+    <Item>Good: {good};</Item>
+    <Item>Neutral: {neutral};</Item>
+    <Item>Bad: {bad};</Item>
+    <Item>Total: {total};</Item>
+    <Item>Positive feedback: {positivePercentage}%;</Item>
+  </Block>
+);
+
+export default Statistics;
+
+Statistics.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string),
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
